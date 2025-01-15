@@ -32,9 +32,11 @@ Sample of the images:
 Images are located in the bin-images directory, and metadata for each image is located in the metadata directory. Images and their associated metadata share simple numerical unique identifiers. For example:
 
 Image:
+
 ![image](img/523.jpg)
 
 JSON file:
+
 ```
 {
     "BIN_FCSKU_DATA": {
@@ -121,5 +123,5 @@ Project scheme:
 
 - Dataset: [Amazon Bin Image Dataset](https://registry.opendata.aws/amazon-bin-imagery/)
 - Usage examples:
-[Amazon Inventory Reconciliation using AI](https://github.com/pablo-tech/Image-Inventory-Reconciliation-with-SVM-and-CNN)
-[Amazon Bin Image Dataset(ABID) Challenge](https://github.com/silverbottlep/abid_challenge)
+    - [Amazon Inventory Reconciliation using AI](https://github.com/pablo-tech/Image-Inventory-Reconciliation-with-SVM-and-CNN)
+    - [Amazon Bin Image Dataset(ABID) Challenge](https://github.com/silverbottlep/abid_challenge)
