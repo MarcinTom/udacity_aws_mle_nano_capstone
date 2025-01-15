@@ -32,7 +32,7 @@ Sample of the images:
 Images are located in the bin-images directory, and metadata for each image is located in the metadata directory. Images and their associated metadata share simple numerical unique identifiers. For example:
 
 Image:
-[bin_image](./img/523.jpg)
+![image](img/523.jpg)
 
 JSON file:
 ```
@@ -115,7 +115,7 @@ The project will consists of below steps:
 
 Project scheme:
 
-[Project design](./img/ML_project.drawio.png)
+![image](img/ML_project.drawio.png)
 
 ### Reference
 
