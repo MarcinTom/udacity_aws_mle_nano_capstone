@@ -83,7 +83,7 @@ JSON file:
 }
 ```
 Images are assigned to 5 label buckets. After checking the distribution of the data we can see that there is a slight imbalance of the labels
-![image](img/img_distribution.jpg)
+![image](img/img_distribution.JPG)
 
 ### Data pre-processing
 
@@ -342,18 +342,18 @@ After attaching required policies I did a test run based on provided test case. 
 
 At the end I tried to run the model training code based on the Spot and multi-instance setup and comparing the costs
 
-Normal instance training time:
--- Training seconds: 1881
--- Billable seconds: 1881
+- Normal instance training time:
+    - Training seconds: 1881
+    - Billable seconds: 1881
 
-Spot instance training time:
--- Training seconds: 1921
--- Billable seconds: 714
--- Managed Spot Training savings: 62.8%
+- Spot instance training time:
+    - Training seconds: 1921
+    - Billable seconds: 714
+    - Managed Spot Training savings: 62.8%
 
-Multi-instance training time:
--- Training seconds: 5994
--- Billable seconds: 5994
+- Multi-instance training time:
+    - Training seconds: 5994
+    - Billable seconds: 5994
 
 
 After running the training jobs based on 3 above setups it looks like to most cost effective strategy in this case is using the spot instance. Spot Instances are a cost-effective choice if you can be flexible about when your applications run and if your applications can be interrupted. For example, Spot Instances are well-suited for data analysis, batch jobs, background processing, and optional tasks.
