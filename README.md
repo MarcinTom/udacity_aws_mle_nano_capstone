@@ -134,7 +134,9 @@ I selected 3 hyperparameters to find the best configurations. These where:
 * `Batch-size in range CategoricalParameter([32, 64, 128])` - it affects the speed of training and accuracy. With higher batch size we get more stable results but the speed of training deteriorates
 * `Number of Epochs in range IntegerParameter(1, 3)` - it represents the number of trainings done with the selected model, high number can cause overfitting
 
-The accuracy of the benchmark model chosen is 56% ([Amazon Bin Image Dataset(ABID) Challenge](https://github.com/silverbottlep/abid_challenge). My tunned model did not achieve such high results which means that as follow up steps we would have to focus more on data preprocessing and maybe extend the number of parameters for tunning (or existing parameter ranges) in the model training.
+The accuracy of the benchmark model chosen is 56% ([Amazon Bin Image Dataset(ABID) Challenge](https://github.com/silverbottlep/abid_challenge). My tunned model did not achieve such high results (test accuracy of 27.5%) which means that as follow up steps we would have to focus more on data preprocessing and maybe extend the number of parameters for tunning (or existing parameter ranges) in the model training.
+
+![image](img/model_results.JPG)
 
 ![image](img/model_results.jpeg)
 
@@ -284,7 +286,6 @@ import base64
 import logging
 import json
 import boto3
-#import numpy
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -295,9 +296,6 @@ endpoint_Name='pytorch-inference-2025-01-24-13-36-23-226'
 
 def lambda_handler(event, context):
 
-    #x=event['content']
-    #aa=x.encode('ascii')
-    #bs=base64.b64decode(aa)
     print('Context:::',context)
     print('EventType::',type(event))
     bs=event
@@ -318,7 +316,6 @@ def lambda_handler(event, context):
         'type-result':str(type(result)),
         'COntent-Type-In':str(context),
         'body' : json.dumps(sss)
-        #'updated_result':str(updated_result)
 
         }
 ```
