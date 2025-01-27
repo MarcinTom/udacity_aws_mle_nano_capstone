@@ -105,14 +105,14 @@ Additionally the images will be normalize to make their values numerically stabl
 Mean = [0.485, 0.456, 0.406] and std = [0.229, 0.224, 0.225] are used for pre-trained models like ResNet because they are based on ImageNet statistics.
 
 
-'''
+```
     training_transform = transforms.Compose([
         transforms.RandomHorizontalFlip(p=0.5),  # Randomly flips the image horizontally with a probability of 0.5
         transforms.Resize((224,224)),
         transforms.ToTensor(),                   # Converts the image to a PyTorch tensor with values between 0 and 1
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalizes the tensor image with mean and std for each channel
     ])
-'''
+```
 
 ## Solution Statement
 
@@ -159,7 +159,10 @@ I selected 3 hyperparameters to find the best configurations. These where:
 * `Batch-size in range CategoricalParameter([32, 64, 128])` - it affects the speed of training and accuracy. With higher batch size we get more stable results but the speed of training deteriorates
 * `Number of Epochs in range IntegerParameter(1, 3)` - it represents the number of trainings done with the selected model, high number can cause overfitting
 
-The accuracy of the benchmark model chosen is 56% ([Amazon Bin Image Dataset(ABID) Challenge](https://github.com/silverbottlep/abid_challenge). My tunned model did not achieve such high results (test accuracy of 27.5%) which means that as follow up steps we would have to focus more on data preprocessing and maybe extend the number of parameters for tunning (or existing parameter ranges) in the model training.
+## Model Evaluation
+
+The accuracy of the benchmark model chosen is 56% ([Amazon Bin Image Dataset(ABID) Challenge](https://github.com/silverbottlep/abid_challenge). <br>
+My tunned model did not achieve such high results (test accuracy of 27.5%). Though it was trained only on limited dataset in contrary to the benchmark model.
 
 ![image](img/model_results.JPG)
 
@@ -168,6 +171,20 @@ The accuracy of the benchmark model chosen is 56% ([Amazon Bin Image Dataset(ABI
 **Insights from the plot**
 - The training loss initially increases within small number of steps but then significantly decreases with the higher number of steps.
 - The validation loss seems to be quite stable but quite noisy
+
+![image](img/z_test.JPG)
+
+```
+Z-statistic: 25.388377775231525
+P-value: 0.0
+The difference in accuracy is statistically significant.
+```
+
+The accuracy difference is statistically significant which means that I should retrain the model. <br>
+The below steps could be taken:
+- use more data for training and model tunning
+- more on data preprocessing and maybe 
+- extend the number of parameters for tunning (or existing parameter ranges) in the model training.
 
 ## Debugging and Profiling
 - **Debugging** captures the tensor values as they go through training and evaluation phase of the process
@@ -382,6 +399,7 @@ After running the training jobs based on 3 above setups it looks like to most co
 
 ## Future steps and considerations to improve model performance
 
-1. Rebalance Label data, include more data to have label 1 balance closer to the other buckets
-2. More focus on hyper-parameters tunning, extend the ranges of chosen hyper-parameters and include other ones
-3. Try different model to see if it has better performance them selected one
+1. Use more data for model training
+2. Rebalance Label data, include more data to have label 1 balance closer to the other buckets
+3. More focus on hyper-parameters tunning, extend the ranges of chosen hyper-parameters and include other ones
+4. Try different model to see if it has better performance them selected one
