@@ -82,12 +82,37 @@ JSON file:
     "image_fname": "523.jpg"
 }
 ```
-Images are assigned to 5 label buckets. After checking the distribution of the data we can see that there is a slight imbalance of the labels
-![image](img/img_distribution.JPG)
 
 ### Data pre-processing
 
-The images are downloaded from URL. All of them are converted to image bytes. To make sure that all of them have same size an image resizing is done by data loaders to 224x224 pixels using PyTorch transformers. The data is divided into training, validation and testing sets for further model training.
+The images are downloaded from URL and split into 3 buckets with below proportions:
+ - train 60%
+ - validation 20%
+ - test 20%
+
+Images are assigned to 5 label buckets. After checking the distribution of the data we can see that there is a slight imbalance of the labels. 1 label has noticeable smaller population comparing to other 4. But I decided not to rebalance any data and use the original split. 
+![image](img/img_distribution.JPG)
+
+ML models, especially Convolutional Neural Networks (CNNs), require inputs of a fixed size. <br>
+Resizing ensures all images have the same dimensions. <br>
+Without consistent dimensions, the model would throw errors or fail to process the data. <br>
+
+![image](img/image_resulution.jpeg)
+
+As per the above comparison we can see that the images resolution is quite spread therefore we will resize all of the to a fixed resolution used by the ResNnet pretrained model (e.g., 224x224 for many pretrained models like ResNet or VGG)<br>
+
+Additionally the images will be normalize to make their values numerically stable.
+Mean = [0.485, 0.456, 0.406] and std = [0.229, 0.224, 0.225] are used for pre-trained models like ResNet because they are based on ImageNet statistics.
+
+
+'''
+    training_transform = transforms.Compose([
+        transforms.RandomHorizontalFlip(p=0.5),  # Randomly flips the image horizontally with a probability of 0.5
+        transforms.Resize((224,224)),
+        transforms.ToTensor(),                   # Converts the image to a PyTorch tensor with values between 0 and 1
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalizes the tensor image with mean and std for each channel
+    ])
+'''
 
 ## Solution Statement
 
